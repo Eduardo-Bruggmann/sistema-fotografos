@@ -27,21 +27,27 @@
         <!-- Lembrar-me -->
         <div class="block mt-4">
             <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Lembrar-me') }}</span>
+                <input id="remember_me" type="checkbox" class="rounded border-zinc-600 bg-zinc-950 text-white shadow-sm focus:outline-none focus:ring-0 focus:ring-offset-0" name="remember">
+                <span class="ms-2 text-sm text-zinc-300">{{ __('Lembrar-me') }}</span>
             </label>
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Esqueceu sua senha?') }}
-                </a>
-            @endif
+            <a class="rounded-md text-sm text-zinc-300 underline transition hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900" href="{{ route('register') }}">
+                {{ __('Não possui uma conta?') }}
+            </a>
 
             <x-primary-button class="ms-3">
-                {{ __('Log in') }}
+                {{ __('Login') }}
             </x-primary-button>
         </div>
+
+        @if (Route::has('password.request') && ($errors->has('email') || $errors->has('password')))
+            <div class="mt-4 text-center">
+                <a class="rounded-md text-sm text-zinc-300 underline transition hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900" href="{{ route('password.request') }}">
+                    {{ __('Esqueceu sua senha?') }}
+                </a>
+            </div>
+        @endif
     </form>
 </x-guest-layout>

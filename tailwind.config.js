@@ -12,8 +12,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                display: ['"Bradley Hand ITC"', '"Bradley Hand"', 'Oswald', ...defaultTheme.fontFamily.sans],
+                sans: ['"Nunito Sans"', ...defaultTheme.fontFamily.sans],
+                display: ['"Nunito Sans"', ...defaultTheme.fontFamily.sans],
             },
         },
     },

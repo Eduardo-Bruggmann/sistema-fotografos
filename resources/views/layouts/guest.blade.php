@@ -8,21 +8,24 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600|oswald:400,500,600,700&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-slate-900 antialiased">
-        <div class="flex min-h-screen flex-col items-center justify-center bg-blue-300 px-4 py-10">
-            <div class="mb-6">
+    <body class="font-sans text-zinc-100 antialiased">
+        <div class="flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-4 py-10">
+            <div class="mb-5">
                 <a href="/">
                     <x-application-logo class="h-20 w-20 fill-current text-white drop-shadow-sm" />
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md overflow-hidden rounded-lg border border-white/50 bg-blue-200/90 px-6 py-6 shadow-lg shadow-blue-900/10">
+            <hr class="mb-6 w-full max-w-xs border-white/10">
+
+            <div class="w-full overflow-hidden rounded-lg border border-white/10 bg-zinc-900 px-6 py-6 shadow-xl shadow-black/40 sm:max-w-sm">
                 {{ $slot }}
             </div>
         </div>

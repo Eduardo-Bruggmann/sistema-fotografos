@@ -42,7 +42,7 @@
         <!-- Role -->
         <div class="mt-4">
             <x-input-label for="role" :value="__('Cargo')" />
-            <select id="role" class="block mt-1 w-full" name="role" required>
+            <select id="role" class="mt-1 block w-full rounded-md border-white/15 bg-zinc-950 text-zinc-100 shadow-sm transition focus:border-white/80 focus:outline-none focus:ring-0 focus:shadow-[0_0_0_1px_rgba(255,255,255,0.55)]" name="role" required>
                 <option value="user">{{ __('Usuário') }}</option>
                 <option value="photographer">{{ __('Fotógrafo') }}</option>
             </select>
@@ -50,8 +50,8 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Já possui uma conta?') }}
+            <a class="rounded-md text-sm text-zinc-300 underline transition hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-zinc-900" href="{{ route('login') }}">
+                {{ __('Já tem uma conta?') }}
             </a>
 
             <x-primary-button class="ms-4">

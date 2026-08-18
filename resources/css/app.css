@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:active,
+    textarea:-webkit-autofill,
+    textarea:-webkit-autofill:hover,
+    textarea:-webkit-autofill:focus,
+    textarea:-webkit-autofill:active,
+    select:-webkit-autofill,
+    select:-webkit-autofill:hover,
+    select:-webkit-autofill:focus,
+    select:-webkit-autofill:active {
+        -webkit-text-fill-color: rgb(244 244 245);
+        caret-color: rgb(244 244 245);
+        box-shadow: 0 0 0 1000px rgb(9 9 11) inset;
+        transition: background-color 9999s ease-out, color 9999s ease-out;
+    }
+
+    input:autofill,
+    textarea:autofill,
+    select:autofill {
+        color: rgb(244 244 245);
+        caret-color: rgb(244 244 245);
+        box-shadow: 0 0 0 1000px rgb(9 9 11) inset;
+    }
+}

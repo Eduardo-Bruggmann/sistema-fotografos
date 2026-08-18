@@ -1,11 +1,11 @@
 <section>
     <header>
-        <h2 class="font-display text-2xl font-semibold text-slate-900">
+        <h2 class="font-display text-2xl font-semibold text-zinc-100">
             {{ __('Atualizar senha') }}
         </h2>
 
-        <p class="mt-1 text-sm font-medium text-slate-600">
-            {{ __('Use uma senha longa e unica para manter sua conta segura.') }}
+        <p class="mt-1 text-sm font-medium text-zinc-400">
+            {{ __('Use uma senha longa e única para manter sua conta segura.') }}
         </p>
     </header>
 
@@ -40,7 +40,7 @@
                     x-show="show"
                     x-transition
                     x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm font-medium text-slate-600"
+                    class="text-sm font-medium text-zinc-400"
                 >{{ __('Salvo.') }}</p>
             @endif
         </div>
