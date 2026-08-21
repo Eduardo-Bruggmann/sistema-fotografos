@@ -38,4 +38,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
+
+    public function isPhotographer()
+    {
+        return $this->role === 'photographer';
+    }
 }

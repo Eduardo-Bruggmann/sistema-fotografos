@@ -19,7 +19,7 @@
         <div class="flex min-h-screen flex-col items-center justify-center bg-zinc-950 px-4 py-10">
             <div class="mb-5">
                 <a href="/">
-                    <x-application-logo class="h-20 w-20 fill-current text-white drop-shadow-sm" />
+                    <x-application-logo class="h-28 w-28 fill-current text-white drop-shadow-sm" />
                 </a>
             </div>
 
