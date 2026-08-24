@@ -21,41 +21,35 @@
             </div>
         @endif
 
-        @if (Auth::user()->isPhotographer())
-            @if ($photos->isNotEmpty())
-                <div class="flex flex-wrap gap-5">
-                    @foreach ($photos as $photo)
-                        <article class="flex w-full flex-col overflow-hidden rounded-lg border border-white/10 bg-zinc-900 shadow-xl shadow-black/30 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-zinc-800/80 sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.875rem)]">
-                            <img src="{{ $photo->path }}" alt="{{ $photo->title ?: 'Sem título' }}" class="aspect-[4/3] w-full object-cover">
+        @if ($photos->isNotEmpty())
+            <div class="flex flex-wrap gap-5">
+                @foreach ($photos as $photo)
+                    <article class="flex w-full flex-col overflow-hidden rounded-lg border border-white/10 bg-zinc-900 shadow-xl shadow-black/30 transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-zinc-800/80 sm:w-[calc(50%-0.625rem)] lg:w-[calc(33.333%-0.875rem)]">
+                        <img src="{{ $photo->path }}" alt="{{ $photo->title ?: 'Sem título' }}" class="aspect-[4/3] w-full object-cover">
 
-                            <div class="flex flex-1 flex-col gap-4 p-4">
-                                <div class="min-w-0">
-                                    <h2 class="truncate text-base font-semibold text-zinc-100">{{ $photo->title ?: 'Sem título' }}</h2>
-                                    <p class="mt-1 truncate text-sm text-zinc-400">{{ $photo->user->name }}</p>
-                                </div>
-
-                                <div class="mt-auto flex items-center justify-between border-t border-white/10 pt-4 text-xs text-zinc-500">
-                                    <time datetime="{{ $photo->created_at->toDateTimeString() }}">
-                                        {{ $photo->created_at->format('d/m/Y') }}
-                                    </time>
-                                </div>
+                        <div class="flex flex-1 flex-col gap-4 p-4">
+                            <div class="min-w-0">
+                                <h2 class="truncate text-base font-semibold text-zinc-100">{{ $photo->title ?: 'Sem título' }}</h2>
+                                <p class="mt-1 truncate text-sm text-zinc-400">{{ $photo->user->name }}</p>
                             </div>
-                        </article>
-                    @endforeach
-                </div>
-            @else
-                <div class="rounded-lg border border-white/10 bg-zinc-900 px-6 py-10 text-center shadow-xl shadow-black/30">
-                    <h2 class="text-lg font-semibold text-zinc-100">Nenhuma foto cadastrada.</h2>
-                </div>
-            @endif
 
-            <div class="mt-6">
-                {{ $photos->links() }}
+                            <div class="mt-auto flex items-center justify-between border-t border-white/10 pt-4 text-xs text-zinc-500">
+                                <time datetime="{{ $photo->created_at->toDateTimeString() }}">
+                                    {{ $photo->created_at->format('d/m/Y') }}
+                                </time>
+                            </div>
+                        </div>
+                    </article>
+                @endforeach
             </div>
         @else
             <div class="rounded-lg border border-white/10 bg-zinc-900 px-6 py-10 text-center shadow-xl shadow-black/30">
-                <h2 class="text-lg font-semibold text-zinc-100">Área de fotógrafos</h2>
+                <h2 class="text-lg font-semibold text-zinc-100">Nenhuma foto cadastrada.</h2>
             </div>
         @endif
+
+        <div class="mt-6">
+            {{ $photos->links() }}
+        </div>
     </div>
 </x-app-layout>
