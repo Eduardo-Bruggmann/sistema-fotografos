@@ -12,27 +12,23 @@ class PhotoController extends Controller
 {
     public function index(): View
     {
-        $photos = Auth::user()->isPhotographer()
-            ? Photo::with('user')->latest()->paginate(9)
-            : collect();
+        $photos = Photo::with('user')->latest()->paginate(9);
 
         return view('dashboard', compact('photos'));
     }
 
     public function create(): View|RedirectResponse
     {
-        if (! Auth::user()->isPhotographer()) {
+        if (!Auth::user()->isPhotographer()) 
             return redirect()->route('dashboard');
-        }
 
         return view('photos.create');
     }
 
     public function store(Request $request): RedirectResponse
     {
-        if (! Auth::user()->isPhotographer()) {
+        if (!Auth::user()->isPhotographer())
             return redirect()->route('dashboard');
-        }
 
         $validated = $request->validate([
             'title' => ['nullable', 'string', 'max:255'],
