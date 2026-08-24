@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('likes', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('photo_id');
-            $table->unsignedBigInteger('user_id');
-            $table->timestamp('created_at')->useCurrent();
+        Schema::table('likes', function (Blueprint $table) {
+            $table->unique(['photo_id', 'user_id']);
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('likes');
+        Schema::table('likes', function (Blueprint $table) {
+            $table->dropUnique(['photo_id', 'user_id']);
+        });
     }
 };

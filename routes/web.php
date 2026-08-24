@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [PhotoController::class, 'index'])->name('dashboard');
     Route::get('/photos/create', [PhotoController::class, 'create'])->name('photos.create');
     Route::post('/photos', [PhotoController::class, 'store'])->name('photos.store');
+    Route::post('/photos/{photo}/like', [PhotoController::class, 'like'])->name('photos.like');
 });
 
 require __DIR__.'/auth.php';

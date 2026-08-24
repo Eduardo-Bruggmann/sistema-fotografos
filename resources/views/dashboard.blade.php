@@ -33,10 +33,23 @@
                                 <p class="mt-1 truncate text-sm text-zinc-400">{{ $photo->user->name }}</p>
                             </div>
 
-                            <div class="mt-auto flex items-center justify-between border-t border-white/10 pt-4 text-xs text-zinc-500">
+                            <div class="mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4 text-xs text-zinc-500">
                                 <time datetime="{{ $photo->created_at->toDateTimeString() }}">
                                     {{ $photo->created_at->format('d/m/Y') }}
                                 </time>
+
+                                <form method="POST" action="{{ route('photos.like', $photo) }}">
+                                    @csrf
+
+                                    <button
+                                        type="submit"
+                                        class="inline-flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-semibold shadow-sm transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-white/80 focus:ring-offset-2 focus:ring-offset-zinc-900 {{ $photo->liked_by_current_user ? 'border-rose-400/40 bg-rose-400/10 text-rose-200 hover:border-rose-300/70 hover:bg-rose-400/20' : 'border-white/15 bg-zinc-800 text-zinc-300 hover:border-white/35 hover:bg-zinc-700 hover:text-white' }}"
+                                        aria-label="{{ $photo->liked_by_current_user ? 'Remover curtida' : 'Curtir foto' }}"
+                                    >
+                                        <x-icon name="icon-heart" class="h-4 w-4 {{ $photo->liked_by_current_user ? 'text-rose-300' : 'text-zinc-400' }}" />
+                                        <span>{{ $photo->likes_count }}</span>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </article>

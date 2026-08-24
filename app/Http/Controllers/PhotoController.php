@@ -12,7 +12,13 @@ class PhotoController extends Controller
 {
     public function index(): View
     {
-        $photos = Photo::with('user')->latest()->paginate(9);
+        $photos = Photo::with('user')
+            ->withCount('likes')
+            ->withExists([
+                'likes as liked_by_current_user' => fn ($query) => $query->where('user_id', Auth::id()),
+            ])
+            ->latest()
+            ->paginate(9);
 
         return view('dashboard', compact('photos'));
     }
@@ -43,5 +49,21 @@ class PhotoController extends Controller
         ]);
 
         return redirect()->route('dashboard')->with('status', 'Foto enviada com sucesso.');
+    }
+
+    public function like(Request $request, Photo $photo): RedirectResponse
+    {
+        $like = $photo->likes()
+            ->where('user_id', $request->user()->id)
+            ->first();
+
+        if ($like) 
+            $like->delete();
+        else 
+            $photo->likes()->create([
+                'user_id' => $request->user()->id,
+            ]);
+
+        return back();
     }
 }

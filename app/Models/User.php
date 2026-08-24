@@ -44,6 +44,16 @@ class User extends Authenticatable
         return $this->hasMany(Photo::class);
     }
 
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
+    public function likedPhotos()
+    {
+        return $this->belongsToMany(Photo::class, 'likes')->withPivot('created_at');
+    }
+
     public function isPhotographer()
     {
         return $this->role === 'photographer';
