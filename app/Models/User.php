@@ -6,6 +6,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -27,5 +28,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function isPhotographer(): bool
+    {
+        return $this->role === 'photographer';
+    }
+
+    public function photo(): HasMany
+    {
+        return $this->hasMany(Photo::class);
+    }
+
+    public function like(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 }
