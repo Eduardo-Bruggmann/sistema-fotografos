@@ -35,4 +35,11 @@ class PhotoController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Foto cadastrada com sucesso!');
     }
+
+    public function like(Request $request, Photo $photo)
+    {
+        $photo->toggleLike($request->user()->id);
+
+        return back();
+    }
 }

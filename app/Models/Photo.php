@@ -22,12 +22,39 @@ class Photo extends Model
         return [];
     }
 
+    public function toggleLike(int $userId): void
+    {
+        $like = $this->likes()
+            ->where('user_id', $userId)
+            ->first();
+
+        if ($like) {
+            $like->delete();
+        } else {
+            $this->likes()->create([
+                'user_id' => $userId,
+            ]);
+        }
+    }
+
+    public function countLikes()
+    {
+        return $this->likes()->count();
+    }
+
+    public function isLikedBy(int $userId): bool
+    {
+        return $this->likes()
+            ->where('user_id', $userId)
+            ->exists();
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
-    public function like(): HasMany
+    public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
     }

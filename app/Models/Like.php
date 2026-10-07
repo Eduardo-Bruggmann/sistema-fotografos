@@ -11,6 +11,8 @@ class Like extends Model
 
     protected $hidden = [];
 
+    public $timestamps = false;
+
     /**
      * Get the attributes that should be cast.
      *

@@ -35,12 +35,12 @@ class User extends Authenticatable
         return $this->role === 'photographer';
     }
 
-    public function photo(): HasMany
+    public function photos(): HasMany
     {
         return $this->hasMany(Photo::class);
     }
 
-    public function like(): HasMany
+    public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
     }
