@@ -1,62 +1,18 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <x-page-heading title="Criar conta" description="Faça parte da nossa comunidade de fotografia." />
+    <form method="POST" action="{{ route('register') }}" class="space-y-5">
         @csrf
-
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Nome')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
-
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Senha')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirme a Senha')" />
-
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
-
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
-
-        <!-- Role -->
-        <div class="block mt-4">
-            <label for="role" class="inline-flex items-center">
-                <select id="role" class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:ring-indigo-500 dark:focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-gray-800" name="role">
-                    <option value="photographer">{{ __('Fotógrafo') }}</option>
-                    <option value="user">{{ __('Usuário') }}</option>
-                </select>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Já possui uma conta?') }}
-            </a>
-
-            <x-primary-button class="ms-4">
-                {{ __('Criar') }}
-            </x-primary-button>
-        </div>
+        <x-form-input name="name" label="Nome" type="text" :value="old('name')" required autofocus autocomplete="name" />
+        <x-form-input name="email" label="Email" type="email" :value="old('email')" required autocomplete="username" />
+        <x-form-input name="password" label="Senha" type="password" required autocomplete="new-password" />
+        <x-form-input name="password_confirmation" label="Confirme a senha" type="password" required autocomplete="new-password" />
+        <x-form-field name="role" label="Tipo de conta">
+            <select id="role" name="role" class="form-control">
+                <option value="photographer" @selected(old('role', 'photographer') === 'photographer')>Fotógrafo</option>
+                <option value="user" @selected(old('role') === 'user')>Usuário</option>
+            </select>
+        </x-form-field>
+        <x-primary-button class="w-full">Criar conta</x-primary-button>
+        <p class="text-center"><a class="text-link" href="{{ route('login') }}">Já possui uma conta? Entre</a></p>
     </form>
 </x-guest-layout>

@@ -1,0 +1,1 @@
+<div {{ $attributes->merge(['class' => 'panel']) }}>{{ $slot }}</div>

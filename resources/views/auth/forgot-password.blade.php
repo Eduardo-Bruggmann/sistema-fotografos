@@ -1,25 +1,9 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Esqueceu sua senha? Sem problema. Nós lhe enviaremos um link de redefinição de senha que lhe permitirá escolher uma nova.') }}
-    </div>
-
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
+    <x-page-heading title="Recuperar senha" description="Informe seu email para receber um link de redefinição de senha." />
+    <x-auth-session-status class="mb-6" :status="session('status')" />
+    <form method="POST" action="{{ route('password.email') }}" class="space-y-5">
         @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Link de Redefinição de Senha') }}
-            </x-primary-button>
-        </div>
+        <x-form-input name="email" label="Email" type="email" :value="old('email')" required autofocus />
+        <x-primary-button class="w-full">Enviar link de redefinição</x-primary-button>
     </form>
 </x-guest-layout>
