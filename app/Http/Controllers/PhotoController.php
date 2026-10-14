@@ -7,10 +7,21 @@ use Illuminate\Http\Request;
 
 class PhotoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $photos = Photo::all();
-        return view('dashboard', compact('photos'));
+        $search = trim($request->validate(['search' => 'nullable|string|max:255'])['search'] ?? '');
+        $photos = Photo::query()
+            ->with('user:id,name')
+            ->withCount('likes')
+            ->withExists(['likes as liked_by_user' => fn ($query) => $query->where('user_id', $request->user()->id)])
+            ->when($search !== '', fn ($query) => $query->where(fn ($query) => $query
+                ->whereLike('title', "%{$search}%")
+                ->orWhereHas('user', fn ($query) => $query->whereLike('name', "%{$search}%"))))
+            ->orderBy('id')
+            ->paginate(9)
+            ->withQueryString();
+
+        return view('dashboard', compact('photos', 'search'));
     }
 
     public function create()

@@ -5,13 +5,23 @@
         @endif
     </x-page-heading>
 
+    <x-photos.search :search="$search" />
+
     @if ($photos->isEmpty())
-        <x-empty-state title="Nenhuma foto publicada ainda." description="As fotografias compartilhadas aparecerão aqui." />
+        @if ($search !== '')
+            <x-empty-state title="Nenhuma foto encontrada." description="Tente outro título ou nome de fotógrafo." />
+        @else
+            <x-empty-state title="Nenhuma foto publicada ainda." description="As fotografias compartilhadas aparecerão aqui." />
+        @endif
     @else
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             @foreach ($photos as $photo)
                 <x-photos.card :photo="$photo" />
             @endforeach
         </div>
+        {{ $photos->links('components.pagination') }}
     @endif
+    <x-slot name="footer">
+        <x-footer />
+    </x-slot>
 </x-app-layout>

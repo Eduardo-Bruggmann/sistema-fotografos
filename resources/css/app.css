@@ -34,3 +34,9 @@
     .mobile-nav-link-active { @apply bg-neutral-100 font-medium text-neutral-900; }
     .dropdown-link { @apply block w-full px-4 py-2 text-start text-sm text-neutral-700 hover:bg-neutral-100; }
 }
+
+@media (hover: hover) {
+    .photo-author { opacity: 0; }
+    .photo-card:hover .photo-author,
+    .photo-card:focus-within .photo-author { opacity: 1; }
+}
